@@ -1,4 +1,7 @@
+
+
 # 🧪 Projeto de Testes Automatizados com Vitest, Testing Library e Jest
+![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
 
 Este projeto tem como objetivo demonstrar o domínio de testes unitários e de integração em aplicações frontend utilizando ferramentas modernas como **Vitest**, **React Testing Library** e **Jest**.
 
@@ -96,13 +99,3 @@ Familiaridade com MSW, cobertura e testes orientados a comportamento real
 
  Criar testes com Cypress (E2E simples)
 
-
----
-
-Se quiser, posso agora:
-
-- **Gerar um badge de cobertura** visual para colocar no topo
-- **Criar README em versão visual (imagem horizontal)** com ícones
-- **Transformar esse projeto em “vitrine” no seu GitHub com descrição otimizada**
-
-É só dizer — você já tem o que precisa, agora é hora de apresentar com força e clareza.
