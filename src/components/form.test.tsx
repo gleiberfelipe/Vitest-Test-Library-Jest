@@ -1,7 +1,7 @@
 // tests/Form.test.tsx
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Form from "./Form";
+import Form from "./form";
 import { describe, test, expect } from "vitest";
 
 describe("Componente Form", () => {
