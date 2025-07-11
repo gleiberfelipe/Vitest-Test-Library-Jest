@@ -29,13 +29,16 @@ Criado como parte da minha preparação para oportunidades como a vaga de Desenv
 
 ---
 
-## 📁 Estrutura
 
+
+## 📁 Estrutura de pastas
+
+```
 ├── src/
-│ ├── components/
-│ └── App.tsx
+│   ├── components/
+│   └── App.tsx
 ├── tests/
-│ └── Example.test.tsx
+│   └── Example.test.tsx
 ├── vitest.config.ts
 ├── vitest.setup.ts
 
