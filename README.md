@@ -44,7 +44,7 @@ Editar
   "test:watch": "vitest --watch",
   "test:ui": "vitest --ui"
 }
-'''
+````
 Estrutura de testes
 
 
@@ -57,7 +57,8 @@ Vitest funciona como executor dos testes e provê asserções e mocks.
 MSW é usado para simular respostas de API e evitar chamadas reais durante os testes, garantindo que sejam confiáveis e independentes.
 
 Exemplo básico de teste
-'''
+
+````
 tsx
 Copiar
 Editar
@@ -89,8 +90,8 @@ describe("Componente Form com API", () => {
     expect(screen.getAllByRole("listitem")).toHaveLength(6);
   });
 });
+````
 
-'''
 Considerações
 Os testes focam em simular o comportamento do usuário final para garantir que o componente funcione conforme esperado.
 
