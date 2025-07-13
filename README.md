@@ -58,10 +58,8 @@ MSW é usado para simular respostas de API e evitar chamadas reais durante os te
 
 Exemplo básico de teste
 
-````
-tsx
-Copiar
-Editar
+````tsx
+
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Form from "./form";
