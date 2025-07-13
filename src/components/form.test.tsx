@@ -8,14 +8,18 @@ describe("Componente Form com API", () => {
   test("Deve carregar 5 tarefas da API ao montar o componente", async () => {
     render(<Form />);
 
-    // Espera as tarefas mockadas aparecerem
+    // Espera as tarefas aparecerem
     await waitFor(() => {
       expect(screen.getAllByRole("listitem")).toHaveLength(5);
     });
 
-    // Verifica se tarefas mockadas estão visíveis
-    expect(screen.getByText("Tarefa mockada 1")).toBeInTheDocument();
-    expect(screen.getByText("Tarefa mockada 5")).toBeInTheDocument();
+    // Verifica se os textos visíveis estão no documento
+    expect(screen.getByText("delectus aut autem")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "laboriosam mollitia et enim quasi adipisci quia provident illum"
+      )
+    ).toBeInTheDocument();
   });
 
   test("Deve permitir adicionar novo item à lista", async () => {
@@ -66,7 +70,7 @@ describe("Componente Form com API", () => {
     })[0];
     await user.click(firstRemoveButton);
 
-    expect(screen.queryByText("Tarefa mockada 1")).not.toBeInTheDocument();
+    expect(screen.queryByText("delectus aut autem")).not.toBeInTheDocument();
     expect(screen.getAllByRole("listitem")).toHaveLength(4);
   });
 });
