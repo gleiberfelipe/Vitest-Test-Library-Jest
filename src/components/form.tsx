@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Button from "./button";
 
 const Form: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [items, setItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/todos?_limit=5"
+        );
+        const taskTitles = response.data.map((task: any) => task.title);
+        setItems(taskTitles);
+      } catch (error) {
+        console.error("Erro ao buscar tarefas:", error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

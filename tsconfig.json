@@ -6,6 +6,6 @@
   ],
 
   "compilerOptions": {
-    "types": ["jest"]
+    "types": ["jest", "vitest/globals", "node"]
   }
 }
