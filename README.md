@@ -44,7 +44,10 @@ Editar
   "test:watch": "vitest --watch",
   "test:ui": "vitest --ui"
 }
+'''
 Estrutura de testes
+
+
 Os testes estão localizados na pasta tests ou próximos aos componentes.
 
 Usamos o React Testing Library para renderizar componentes e interagir com eles da mesma forma que um usuário real faria (clicar, digitar, etc).
@@ -54,6 +57,7 @@ Vitest funciona como executor dos testes e provê asserções e mocks.
 MSW é usado para simular respostas de API e evitar chamadas reais durante os testes, garantindo que sejam confiáveis e independentes.
 
 Exemplo básico de teste
+'''
 tsx
 Copiar
 Editar
@@ -85,6 +89,8 @@ describe("Componente Form com API", () => {
     expect(screen.getAllByRole("listitem")).toHaveLength(6);
   });
 });
+
+'''
 Considerações
 Os testes focam em simular o comportamento do usuário final para garantir que o componente funcione conforme esperado.
 
