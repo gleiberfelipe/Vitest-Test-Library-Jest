@@ -1,101 +1,94 @@
+# Projeto de Testes com Vitest, React Testing Library e Jest
 
+Este repositório demonstra o uso de testes unitários e de integração em aplicações React usando as ferramentas modernas **Vitest** e **React Testing Library**, além de exemplos com **Jest**. O objetivo é mostrar domínio em testes para frontend, focando em qualidade, organização e boas práticas.
 
-# 🧪 Projeto de Testes Automatizados com Vitest, Testing Library e Jest
-![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
-
-Este projeto tem como objetivo demonstrar o domínio de testes unitários e de integração em aplicações frontend utilizando ferramentas modernas como **Vitest**, **React Testing Library** e **Jest**.
-
-Criado como parte da minha preparação para oportunidades como a vaga de Desenvolvedor(a) Frontend no Banco Inter, este repositório evidencia o cuidado com qualidade, organização e testes orientados à experiência do usuário.
+Este projeto foi desenvolvido como parte da preparação para oportunidades na área de desenvolvimento frontend, incluindo a vaga de Desenvolvedor(a) Frontend no Banco Inter.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-- ✅ **React 18**
-- ✅ **Vitest** — Test runner leve e rápido, moderno e compatível com Vite
-- ✅ **React Testing Library** — Foco em comportamento real do usuário
-- ✅ **Jest DOM** — Matchers para assertividade avançada
-- ✅ **Mock Service Worker (MSW)** — (em fase de implementação)
-- ✅ **Cobertura de testes** com relatório `--coverage`
-
----
-
-## 🧪 O que está testado aqui
-
-| Tipo de teste              | Descrição                                                 |
-|----------------------------|-----------------------------------------------------------|
-| ✅ Comportamento de botão   | Verifica renderização, clique e mudança de estado        |
-| ✅ Inputs e formulários     | Simula preenchimento e leitura de valores                |
-| ✅ Testes de renderização   | Garante que os componentes apareçam conforme esperado    |
-| 🔄 MSW (em progresso)       | Mock de API para testar sem dependência externa          |
-| 🔄 Testes E2E com Cypress   | Planejado para simulação de fluxo completo (opcional)    |
+- [React](https://reactjs.org/)
+- [Vitest](https://vitest.dev/) – framework de testes moderno e rápido, similar ao Jest.
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) – para testes focados no comportamento do usuário.
+- [Jest](https://jestjs.io/) – ferramenta de testes JavaScript (exemplos e comparativos).
+- [MSW (Mock Service Worker)](https://mswjs.io/) – para mockar requisições HTTP durante os testes.
+- [TypeScript](https://www.typescriptlang.org/) (opcional, caso use no projeto).
 
 ---
 
+## Como rodar o projeto e os testes
 
-
-## 📁 Estrutura de pastas
-
-```
-├── src/
-│   ├── components/
-│   └── App.tsx
-├── tests/
-│   └── Example.test.tsx
-├── vitest.config.ts
-├── vitest.setup.ts
-
-
----
-
-## ✅ Rodando os testes
+### Instalar dependências
 
 ```bash
-# Instalar dependências
 npm install
-
-# Rodar testes
+# ou
+yarn install
+Rodar testes com Vitest
+bash
+Copiar
+Editar
 npm run test
+# ou para rodar em modo watch (recompilação automática)
+npm run test:watch
+# ou abrir interface gráfica dos testes
+npm run test:ui
+Os scripts acima devem estar configurados no seu package.json da seguinte forma:
 
-# Gerar relatório de cobertura
-npm run coverage
-📊 Cobertura
-A cobertura atual será atualizada conforme mais casos forem adicionados.
+json
+Copiar
+Editar
+"scripts": {
+  "test": "vitest",
+  "test:watch": "vitest --watch",
+  "test:ui": "vitest --ui"
+}
+Estrutura de testes
+Os testes estão localizados na pasta tests ou próximos aos componentes.
 
-Statements: 78%
+Usamos o React Testing Library para renderizar componentes e interagir com eles da mesma forma que um usuário real faria (clicar, digitar, etc).
 
-Branches: 72%
+Vitest funciona como executor dos testes e provê asserções e mocks.
 
-Functions: 85%
+MSW é usado para simular respostas de API e evitar chamadas reais durante os testes, garantindo que sejam confiáveis e independentes.
 
-Lines: 77%
+Exemplo básico de teste
+tsx
+Copiar
+Editar
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Form from "./form";
+import { describe, test, expect } from "vitest";
 
-📌 Aprendizados
-Compreensão sólida de testes com Vitest + Testing Library
+describe("Componente Form com API", () => {
+  test("Deve carregar 5 tarefas da API ao montar o componente", async () => {
+    render(<Form />);
+    await waitFor(() => {
+      expect(screen.getAllByRole("listitem")).toHaveLength(5);
+    });
+    expect(screen.getByText("Tarefa mockada 1")).toBeInTheDocument();
+  });
 
-Uso de matchers com jest-dom
+  test("Deve permitir adicionar novo item à lista", async () => {
+    const user = userEvent.setup();
+    render(<Form />);
+    await waitFor(() => {
+      expect(screen.getAllByRole("listitem")).toHaveLength(5);
+    });
+    const input = screen.getByRole("textbox", { name: /item/i });
+    const submitButton = screen.getByRole("button", { name: /enviar/i });
+    await user.type(input, "Nova tarefa");
+    await user.click(submitButton);
+    expect(screen.getByText("Nova tarefa")).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem")).toHaveLength(6);
+  });
+});
+Considerações
+Os testes focam em simular o comportamento do usuário final para garantir que o componente funcione conforme esperado.
 
-Estrutura de testes organizados por contexto
+Com o uso do MSW, evitamos chamadas reais a APIs durante testes, aumentando velocidade e confiabilidade.
 
-Leitura da árvore DOM para simular uso real
-
-Aplicação prática de conhecimento que se alinha com o dia a dia de grandes squads frontend
-
-💼 Fit com o Banco Inter
-Este projeto demonstra diretamente os critérios técnicos da vaga de Frontend no Banco Inter, como:
-
-Uso de ferramentas modernas de testes
-
-Escrita de código testável e bem estruturado
-
-Foco em qualidade de entrega e não apenas "funcionar"
-
-Familiaridade com MSW, cobertura e testes orientados a comportamento real
-
-🧠 Próximos passos
- Integrar Mock Service Worker com APIs simuladas
-
- Adicionar testes de erro e borda
-
- Criar testes com Cypress (E2E simples)
+Vitest é uma alternativa leve e rápida ao Jest, com suporte nativo para ESM, TypeScript e integração com Testing Library.
 
